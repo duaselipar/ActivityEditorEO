@@ -463,7 +463,7 @@
             btnsv.Name = "btnsv";
             btnsv.Size = new Size(153, 23);
             btnsv.TabIndex = 7;
-            btnsv.Text = "Save All Setting";
+            btnsv.Text = "Save All Settings";
             btnsv.UseVisualStyleBackColor = true;
             btnsv.Click += btnsv_Click;
             // 
