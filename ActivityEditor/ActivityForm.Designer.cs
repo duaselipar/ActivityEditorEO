@@ -29,8 +29,15 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ActivityForm));
             tabControl1 = new TabControl();
             tbcfg = new TabPage();
+            groupBox3 = new GroupBox();
+            linkLabel2 = new LinkLabel();
+            linkLabel1 = new LinkLabel();
+            label56 = new Label();
+            Note = new GroupBox();
+            label55 = new Label();
             button1 = new Button();
             groupBox2 = new GroupBox();
             btnpe = new Button();
@@ -156,10 +163,10 @@
             txtSearch = new TextBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
             mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
-            Note = new GroupBox();
-            label55 = new Label();
             tabControl1.SuspendLayout();
             tbcfg.SuspendLayout();
+            groupBox3.SuspendLayout();
+            Note.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             tbmain.SuspendLayout();
@@ -167,7 +174,6 @@
             tabpe.SuspendLayout();
             tabacn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEvents).BeginInit();
-            Note.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -182,6 +188,7 @@
             // 
             // tbcfg
             // 
+            tbcfg.Controls.Add(groupBox3);
             tbcfg.Controls.Add(Note);
             tbcfg.Controls.Add(button1);
             tbcfg.Controls.Add(groupBox2);
@@ -194,11 +201,73 @@
             tbcfg.Text = "Configuration";
             tbcfg.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(linkLabel2);
+            groupBox3.Controls.Add(linkLabel1);
+            groupBox3.Controls.Add(label56);
+            groupBox3.Location = new Point(6, 413);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(963, 160);
+            groupBox3.TabIndex = 4;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "About";
+            // 
+            // linkLabel2
+            // 
+            linkLabel2.AutoSize = true;
+            linkLabel2.Location = new Point(368, 119);
+            linkLabel2.Name = "linkLabel2";
+            linkLabel2.Size = new Size(63, 15);
+            linkLabel2.TabIndex = 2;
+            linkLabel2.TabStop = true;
+            linkLabel2.Text = "DuaSelipar";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(293, 104);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(74, 15);
+            linkLabel1.TabIndex = 1;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Source Code";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // label56
+            // 
+            label56.AutoSize = true;
+            label56.Location = new Point(29, 29);
+            label56.Name = "label56";
+            label56.Size = new Size(627, 120);
+            label56.TabIndex = 0;
+            label56.Text = resources.GetString("label56.Text");
+            // 
+            // Note
+            // 
+            Note.Controls.Add(label55);
+            Note.Location = new Point(6, 251);
+            Note.Name = "Note";
+            Note.Size = new Size(963, 70);
+            Note.TabIndex = 3;
+            Note.TabStop = false;
+            Note.Text = "Note";
+            // 
+            // label55
+            // 
+            label55.AutoSize = true;
+            label55.Location = new Point(25, 31);
+            label55.Name = "label55";
+            label55.Size = new Size(817, 15);
+            label55.TabIndex = 0;
+            label55.Text = "To modify the task name or reward details, please edit them in taskitem.dat. Changes made here will not update the names or rewards shown in the client.\r\n";
+            // 
             // button1
             // 
-            button1.Location = new Point(477, 260);
+            button1.Location = new Point(6, 327);
             button1.Name = "button1";
-            button1.Size = new Size(144, 80);
+            button1.Size = new Size(963, 80);
             button1.TabIndex = 2;
             button1.Text = "Load And Connect";
             button1.UseVisualStyleBackColor = true;
@@ -390,9 +459,9 @@
             // 
             // btnsv
             // 
-            btnsv.Location = new Point(732, 697);
+            btnsv.Location = new Point(812, 693);
             btnsv.Name = "btnsv";
-            btnsv.Size = new Size(127, 23);
+            btnsv.Size = new Size(153, 23);
             btnsv.TabIndex = 7;
             btnsv.Text = "Save All Setting";
             btnsv.UseVisualStyleBackColor = true;
@@ -400,19 +469,19 @@
             // 
             // txtts
             // 
-            txtts.Location = new Point(510, 697);
+            txtts.Location = new Point(532, 694);
             txtts.Name = "txtts";
-            txtts.Size = new Size(186, 23);
+            txtts.Size = new Size(274, 23);
             txtts.TabIndex = 6;
             // 
             // label54
             // 
             label54.AutoSize = true;
-            label54.Location = new Point(421, 700);
+            label54.Location = new Point(403, 697);
             label54.Name = "label54";
-            label54.Size = new Size(83, 15);
+            label54.Size = new Size(121, 15);
             label54.TabIndex = 5;
-            label54.Text = "Trigger Script :";
+            label54.Text = "Action Trigger Script :";
             // 
             // tab
             // 
@@ -421,7 +490,7 @@
             tab.Location = new Point(399, 10);
             tab.Name = "tab";
             tab.SelectedIndex = 0;
-            tab.Size = new Size(582, 669);
+            tab.Size = new Size(570, 669);
             tab.TabIndex = 4;
             // 
             // tabpe
@@ -455,7 +524,7 @@
             tabpe.Location = new Point(4, 24);
             tabpe.Name = "tabpe";
             tabpe.Padding = new Padding(3);
-            tabpe.Size = new Size(574, 641);
+            tabpe.Size = new Size(562, 641);
             tabpe.TabIndex = 0;
             tabpe.Text = "PlayExplain.ini";
             tabpe.UseVisualStyleBackColor = true;
@@ -464,14 +533,14 @@
             // 
             txtpeuld.Location = new Point(143, 599);
             txtpeuld.Name = "txtpeuld";
-            txtpeuld.Size = new Size(172, 23);
+            txtpeuld.Size = new Size(391, 23);
             txtpeuld.TabIndex = 25;
             // 
             // rtxtped3
             // 
             rtxtped3.Location = new Point(143, 497);
             rtxtped3.Name = "rtxtped3";
-            rtxtped3.Size = new Size(386, 96);
+            rtxtped3.Size = new Size(391, 96);
             rtxtped3.TabIndex = 24;
             rtxtped3.Text = "";
             // 
@@ -479,14 +548,14 @@
             // 
             txtpedt3.Location = new Point(143, 468);
             txtpedt3.Name = "txtpedt3";
-            txtpedt3.Size = new Size(172, 23);
+            txtpedt3.Size = new Size(391, 23);
             txtpedt3.TabIndex = 23;
             // 
             // rtxtped2
             // 
             rtxtped2.Location = new Point(143, 366);
             rtxtped2.Name = "rtxtped2";
-            rtxtped2.Size = new Size(386, 96);
+            rtxtped2.Size = new Size(391, 96);
             rtxtped2.TabIndex = 22;
             rtxtped2.Text = "";
             // 
@@ -494,7 +563,7 @@
             // 
             txtpedt2.Location = new Point(143, 337);
             txtpedt2.Name = "txtpedt2";
-            txtpedt2.Size = new Size(172, 23);
+            txtpedt2.Size = new Size(391, 23);
             txtpedt2.TabIndex = 21;
             // 
             // rtxtped1
@@ -509,49 +578,49 @@
             // 
             txtpedt1.Location = new Point(143, 203);
             txtpedt1.Name = "txtpedt1";
-            txtpedt1.Size = new Size(172, 23);
+            txtpedt1.Size = new Size(391, 23);
             txtpedt1.TabIndex = 19;
             // 
             // txtper
             // 
             txtper.Location = new Point(143, 170);
             txtper.Name = "txtper";
-            txtper.Size = new Size(172, 23);
+            txtper.Size = new Size(391, 23);
             txtper.TabIndex = 18;
             // 
             // txtpert
             // 
             txtpert.Location = new Point(143, 139);
             txtpert.Name = "txtpert";
-            txtpert.Size = new Size(172, 23);
+            txtpert.Size = new Size(391, 23);
             txtpert.TabIndex = 17;
             // 
             // txtpeactivityname
             // 
             txtpeactivityname.Location = new Point(143, 108);
             txtpeactivityname.Name = "txtpeactivityname";
-            txtpeactivityname.Size = new Size(172, 23);
+            txtpeactivityname.Size = new Size(391, 23);
             txtpeactivityname.TabIndex = 16;
             // 
             // txtpescript
             // 
             txtpescript.Location = new Point(143, 79);
             txtpescript.Name = "txtpescript";
-            txtpescript.Size = new Size(172, 23);
+            txtpescript.Size = new Size(391, 23);
             txtpescript.TabIndex = 15;
             // 
             // txtpeweb
             // 
             txtpeweb.Location = new Point(143, 48);
             txtpeweb.Name = "txtpeweb";
-            txtpeweb.Size = new Size(172, 23);
+            txtpeweb.Size = new Size(391, 23);
             txtpeweb.TabIndex = 14;
             // 
             // txtpestatus
             // 
             txtpestatus.Location = new Point(143, 19);
             txtpestatus.Name = "txtpestatus";
-            txtpestatus.Size = new Size(172, 23);
+            txtpestatus.Size = new Size(391, 23);
             txtpestatus.TabIndex = 13;
             // 
             // label21
@@ -740,21 +809,21 @@
             tabacn.Location = new Point(4, 24);
             tabacn.Name = "tabacn";
             tabacn.Padding = new Padding(3);
-            tabacn.Size = new Size(574, 641);
+            tabacn.Size = new Size(562, 641);
             tabacn.TabIndex = 1;
             tabacn.Text = "ActivityCalendarNew.ini";
             tabacn.UseVisualStyleBackColor = true;
             // 
             // txtacntt
             // 
-            txtacntt.Location = new Point(388, 404);
+            txtacntt.Location = new Point(390, 431);
             txtacntt.Name = "txtacntt";
             txtacntt.Size = new Size(140, 23);
             txtacntt.TabIndex = 63;
             // 
             // txtacnmet
             // 
-            txtacnmet.Location = new Point(388, 375);
+            txtacnmet.Location = new Point(390, 402);
             txtacnmet.Name = "txtacnmet";
             txtacnmet.Size = new Size(140, 23);
             txtacnmet.TabIndex = 62;
@@ -762,7 +831,7 @@
             // label53
             // 
             label53.AutoSize = true;
-            label53.Location = new Point(323, 407);
+            label53.Location = new Point(325, 434);
             label53.Name = "label53";
             label53.Size = new Size(57, 15);
             label53.TabIndex = 61;
@@ -771,7 +840,7 @@
             // label52
             // 
             label52.AutoSize = true;
-            label52.Location = new Point(293, 380);
+            label52.Location = new Point(295, 407);
             label52.Name = "label52";
             label52.Size = new Size(89, 15);
             label52.TabIndex = 60;
@@ -780,7 +849,7 @@
             // label51
             // 
             label51.AutoSize = true;
-            label51.Location = new Point(342, 351);
+            label51.Location = new Point(344, 378);
             label51.Name = "label51";
             label51.Size = new Size(38, 15);
             label51.TabIndex = 59;
@@ -788,14 +857,14 @@
             // 
             // txtacnd
             // 
-            txtacnd.Location = new Point(388, 346);
+            txtacnd.Location = new Point(390, 373);
             txtacnd.Name = "txtacnd";
             txtacnd.Size = new Size(140, 23);
             txtacnd.TabIndex = 58;
             // 
             // txtacnhn
             // 
-            txtacnhn.Location = new Point(386, 317);
+            txtacnhn.Location = new Point(388, 344);
             txtacnhn.Name = "txtacnhn";
             txtacnhn.Size = new Size(142, 23);
             txtacnhn.TabIndex = 57;
@@ -803,7 +872,7 @@
             // label50
             // 
             label50.AutoSize = true;
-            label50.Location = new Point(302, 322);
+            label50.Location = new Point(304, 349);
             label50.Name = "label50";
             label50.Size = new Size(78, 15);
             label50.TabIndex = 56;
@@ -812,7 +881,7 @@
             // label49
             // 
             label49.AutoSize = true;
-            label49.Location = new Point(307, 291);
+            label49.Location = new Point(309, 318);
             label49.Name = "label49";
             label49.Size = new Size(73, 15);
             label49.TabIndex = 55;
@@ -821,7 +890,7 @@
             // label48
             // 
             label48.AutoSize = true;
-            label48.Location = new Point(281, 264);
+            label48.Location = new Point(283, 291);
             label48.Name = "label48";
             label48.Size = new Size(101, 15);
             label48.TabIndex = 54;
@@ -830,7 +899,7 @@
             // label47
             // 
             label47.AutoSize = true;
-            label47.Location = new Point(317, 235);
+            label47.Location = new Point(319, 262);
             label47.Name = "label47";
             label47.Size = new Size(65, 15);
             label47.TabIndex = 53;
@@ -839,7 +908,7 @@
             // label46
             // 
             label46.AutoSize = true;
-            label46.Location = new Point(326, 204);
+            label46.Location = new Point(328, 231);
             label46.Name = "label46";
             label46.Size = new Size(56, 15);
             label46.TabIndex = 52;
@@ -847,28 +916,28 @@
             // 
             // txtacntd
             // 
-            txtacntd.Location = new Point(388, 288);
+            txtacntd.Location = new Point(390, 315);
             txtacntd.Name = "txtacntd";
             txtacntd.Size = new Size(142, 23);
             txtacntd.TabIndex = 51;
             // 
             // txtacnits
             // 
-            txtacnits.Location = new Point(388, 259);
+            txtacnits.Location = new Point(390, 286);
             txtacnits.Name = "txtacnits";
             txtacnits.Size = new Size(142, 23);
             txtacnits.TabIndex = 50;
             // 
             // txtacnbb
             // 
-            txtacnbb.Location = new Point(388, 230);
+            txtacnbb.Location = new Point(390, 257);
             txtacnbb.Name = "txtacnbb";
             txtacnbb.Size = new Size(142, 23);
             txtacnbb.TabIndex = 49;
             // 
             // txtacnci
             // 
-            txtacnci.Location = new Point(388, 201);
+            txtacnci.Location = new Point(390, 228);
             txtacnci.Name = "txtacnci";
             txtacnci.Size = new Size(142, 23);
             txtacnci.TabIndex = 48;
@@ -876,7 +945,7 @@
             // label45
             // 
             label45.AutoSize = true;
-            label45.Location = new Point(302, 172);
+            label45.Location = new Point(304, 199);
             label45.Name = "label45";
             label45.Size = new Size(80, 15);
             label45.TabIndex = 47;
@@ -885,7 +954,7 @@
             // label44
             // 
             label44.AutoSize = true;
-            label44.Location = new Point(317, 143);
+            label44.Location = new Point(319, 170);
             label44.Name = "label44";
             label44.Size = new Size(65, 15);
             label44.TabIndex = 46;
@@ -894,7 +963,7 @@
             // label43
             // 
             label43.AutoSize = true;
-            label43.Location = new Point(310, 114);
+            label43.Location = new Point(312, 141);
             label43.Name = "label43";
             label43.Size = new Size(70, 15);
             label43.TabIndex = 45;
@@ -903,7 +972,7 @@
             // label42
             // 
             label42.AutoSize = true;
-            label42.Location = new Point(326, 85);
+            label42.Location = new Point(328, 112);
             label42.Name = "label42";
             label42.Size = new Size(54, 15);
             label42.TabIndex = 44;
@@ -912,7 +981,7 @@
             // label41
             // 
             label41.AutoSize = true;
-            label41.Location = new Point(294, 56);
+            label41.Location = new Point(296, 83);
             label41.Name = "label41";
             label41.Size = new Size(88, 15);
             label41.TabIndex = 43;
@@ -921,7 +990,7 @@
             // label40
             // 
             label40.AutoSize = true;
-            label40.Location = new Point(300, 27);
+            label40.Location = new Point(302, 54);
             label40.Name = "label40";
             label40.Size = new Size(82, 15);
             label40.TabIndex = 42;
@@ -930,7 +999,7 @@
             // label39
             // 
             label39.AutoSize = true;
-            label39.Location = new Point(78, 520);
+            label39.Location = new Point(80, 547);
             label39.Name = "label39";
             label39.Size = new Size(40, 15);
             label39.TabIndex = 41;
@@ -939,7 +1008,7 @@
             // label38
             // 
             label38.AutoSize = true;
-            label38.Location = new Point(70, 491);
+            label38.Location = new Point(72, 518);
             label38.Name = "label38";
             label38.Size = new Size(49, 15);
             label38.TabIndex = 40;
@@ -948,7 +1017,7 @@
             // label37
             // 
             label37.AutoSize = true;
-            label37.Location = new Point(24, 462);
+            label37.Location = new Point(26, 489);
             label37.Name = "label37";
             label37.Size = new Size(94, 15);
             label37.TabIndex = 39;
@@ -957,7 +1026,7 @@
             // label36
             // 
             label36.AutoSize = true;
-            label36.Location = new Point(68, 433);
+            label36.Location = new Point(70, 460);
             label36.Name = "label36";
             label36.Size = new Size(50, 15);
             label36.TabIndex = 38;
@@ -966,7 +1035,7 @@
             // label35
             // 
             label35.AutoSize = true;
-            label35.Location = new Point(37, 404);
+            label35.Location = new Point(39, 431);
             label35.Name = "label35";
             label35.Size = new Size(81, 15);
             label35.TabIndex = 37;
@@ -975,7 +1044,7 @@
             // label34
             // 
             label34.AutoSize = true;
-            label34.Location = new Point(60, 375);
+            label34.Location = new Point(62, 402);
             label34.Name = "label34";
             label34.Size = new Size(58, 15);
             label34.TabIndex = 36;
@@ -984,7 +1053,7 @@
             // label33
             // 
             label33.AutoSize = true;
-            label33.Location = new Point(43, 346);
+            label33.Location = new Point(45, 373);
             label33.Name = "label33";
             label33.Size = new Size(76, 15);
             label33.TabIndex = 35;
@@ -993,7 +1062,7 @@
             // label32
             // 
             label32.AutoSize = true;
-            label32.Location = new Point(43, 317);
+            label32.Location = new Point(45, 344);
             label32.Name = "label32";
             label32.Size = new Size(78, 15);
             label32.TabIndex = 34;
@@ -1002,7 +1071,7 @@
             // label31
             // 
             label31.AutoSize = true;
-            label31.Location = new Point(60, 288);
+            label31.Location = new Point(62, 315);
             label31.Name = "label31";
             label31.Size = new Size(61, 15);
             label31.TabIndex = 33;
@@ -1011,7 +1080,7 @@
             // label30
             // 
             label30.AutoSize = true;
-            label30.Location = new Point(49, 259);
+            label30.Location = new Point(51, 286);
             label30.Name = "label30";
             label30.Size = new Size(72, 15);
             label30.TabIndex = 32;
@@ -1020,7 +1089,7 @@
             // label29
             // 
             label29.AutoSize = true;
-            label29.Location = new Point(24, 230);
+            label29.Location = new Point(26, 257);
             label29.Name = "label29";
             label29.Size = new Size(97, 15);
             label29.TabIndex = 31;
@@ -1029,7 +1098,7 @@
             // label28
             // 
             label28.AutoSize = true;
-            label28.Location = new Point(61, 201);
+            label28.Location = new Point(63, 228);
             label28.Name = "label28";
             label28.Size = new Size(60, 15);
             label28.TabIndex = 30;
@@ -1038,7 +1107,7 @@
             // label27
             // 
             label27.AutoSize = true;
-            label27.Location = new Point(51, 172);
+            label27.Location = new Point(53, 199);
             label27.Name = "label27";
             label27.Size = new Size(70, 15);
             label27.TabIndex = 29;
@@ -1047,7 +1116,7 @@
             // label26
             // 
             label26.AutoSize = true;
-            label26.Location = new Point(79, 143);
+            label26.Location = new Point(81, 170);
             label26.Name = "label26";
             label26.Size = new Size(42, 15);
             label26.TabIndex = 28;
@@ -1056,7 +1125,7 @@
             // label25
             // 
             label25.AutoSize = true;
-            label25.Location = new Point(64, 114);
+            label25.Location = new Point(66, 141);
             label25.Name = "label25";
             label25.Size = new Size(57, 15);
             label25.TabIndex = 27;
@@ -1065,7 +1134,7 @@
             // label24
             // 
             label24.AutoSize = true;
-            label24.Location = new Point(54, 85);
+            label24.Location = new Point(56, 112);
             label24.Name = "label24";
             label24.Size = new Size(67, 15);
             label24.TabIndex = 26;
@@ -1074,7 +1143,7 @@
             // label23
             // 
             label23.AutoSize = true;
-            label23.Location = new Point(55, 56);
+            label23.Location = new Point(57, 83);
             label23.Name = "label23";
             label23.Size = new Size(66, 15);
             label23.TabIndex = 25;
@@ -1083,7 +1152,7 @@
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(70, 27);
+            label22.Location = new Point(72, 54);
             label22.Name = "label22";
             label22.Size = new Size(51, 15);
             label22.TabIndex = 24;
@@ -1091,168 +1160,168 @@
             // 
             // txtacnfp
             // 
-            txtacnfp.Location = new Point(388, 169);
+            txtacnfp.Location = new Point(390, 196);
             txtacnfp.Name = "txtacnfp";
             txtacnfp.Size = new Size(142, 23);
             txtacnfp.TabIndex = 23;
             // 
             // txtacnvb
             // 
-            txtacnvb.Location = new Point(388, 140);
+            txtacnvb.Location = new Point(390, 167);
             txtacnvb.Name = "txtacnvb";
             txtacnvb.Size = new Size(142, 23);
             txtacnvb.TabIndex = 22;
             // 
             // txtacntstrht
             // 
-            txtacntstrht.Location = new Point(388, 111);
+            txtacntstrht.Location = new Point(390, 138);
             txtacntstrht.Name = "txtacntstrht";
             txtacntstrht.Size = new Size(142, 23);
             txtacntstrht.TabIndex = 21;
             // 
             // txtacntstr
             // 
-            txtacntstr.Location = new Point(388, 82);
+            txtacntstr.Location = new Point(390, 109);
             txtacntstr.Name = "txtacntstr";
             txtacntstr.Size = new Size(142, 23);
             txtacntstr.TabIndex = 20;
             // 
             // txtacntal
             // 
-            txtacntal.Location = new Point(388, 53);
+            txtacntal.Location = new Point(390, 80);
             txtacntal.Name = "txtacntal";
             txtacntal.Size = new Size(142, 23);
             txtacntal.TabIndex = 19;
             // 
             // txtacnar
             // 
-            txtacnar.Location = new Point(388, 24);
+            txtacnar.Location = new Point(390, 51);
             txtacnar.Name = "txtacnar";
             txtacnar.Size = new Size(142, 23);
             txtacnar.TabIndex = 18;
             // 
             // txtacnt
             // 
-            txtacnt.Location = new Point(127, 517);
+            txtacnt.Location = new Point(129, 544);
             txtacnt.Name = "txtacnt";
             txtacnt.Size = new Size(142, 23);
             txtacnt.TabIndex = 17;
             // 
             // txtacnmn
             // 
-            txtacnmn.Location = new Point(127, 488);
+            txtacnmn.Location = new Point(129, 515);
             txtacnmn.Name = "txtacnmn";
             txtacnmn.Size = new Size(142, 23);
             txtacnmn.TabIndex = 16;
             // 
             // txtacnmb
             // 
-            txtacnmb.Location = new Point(127, 459);
+            txtacnmb.Location = new Point(129, 486);
             txtacnmb.Name = "txtacnmb";
             txtacnmb.Size = new Size(142, 23);
             txtacnmb.TabIndex = 15;
             // 
             // txtacnb
             // 
-            txtacnb.Location = new Point(127, 430);
+            txtacnb.Location = new Point(129, 457);
             txtacnb.Name = "txtacnb";
             txtacnb.Size = new Size(142, 23);
             txtacnb.TabIndex = 14;
             // 
             // txtacnmi
             // 
-            txtacnmi.Location = new Point(127, 401);
+            txtacnmi.Location = new Point(129, 428);
             txtacnmi.Name = "txtacnmi";
             txtacnmi.Size = new Size(142, 23);
             txtacnmi.TabIndex = 13;
             // 
             // txtacnm
             // 
-            txtacnm.Location = new Point(127, 372);
+            txtacnm.Location = new Point(129, 399);
             txtacnm.Name = "txtacnm";
             txtacnm.Size = new Size(142, 23);
             txtacnm.TabIndex = 12;
             // 
             // txtacnai
             // 
-            txtacnai.Location = new Point(127, 343);
+            txtacnai.Location = new Point(129, 370);
             txtacnai.Name = "txtacnai";
             txtacnai.Size = new Size(142, 23);
             txtacnai.TabIndex = 11;
             // 
             // txtacnat
             // 
-            txtacnat.Location = new Point(127, 314);
+            txtacnat.Location = new Point(129, 341);
             txtacnat.Name = "txtacnat";
             txtacnat.Size = new Size(142, 23);
             txtacnat.TabIndex = 10;
             // 
             // txtacnpi
             // 
-            txtacnpi.Location = new Point(127, 285);
+            txtacnpi.Location = new Point(129, 312);
             txtacnpi.Name = "txtacnpi";
             txtacnpi.Size = new Size(142, 23);
             txtacnpi.TabIndex = 9;
             // 
             // txtacnlt
             // 
-            txtacnlt.Location = new Point(127, 256);
+            txtacnlt.Location = new Point(129, 283);
             txtacnlt.Name = "txtacnlt";
             txtacnlt.Size = new Size(142, 23);
             txtacnlt.TabIndex = 8;
             // 
             // txtacnct
             // 
-            txtacnct.Location = new Point(127, 227);
+            txtacnct.Location = new Point(129, 254);
             txtacnct.Name = "txtacnct";
             txtacnct.Size = new Size(142, 23);
             txtacnct.TabIndex = 7;
             // 
             // txtacnet
             // 
-            txtacnet.Location = new Point(127, 198);
+            txtacnet.Location = new Point(129, 225);
             txtacnet.Name = "txtacnet";
             txtacnet.Size = new Size(142, 23);
             txtacnet.TabIndex = 6;
             // 
             // txtacnbt
             // 
-            txtacnbt.Location = new Point(127, 169);
+            txtacnbt.Location = new Point(129, 196);
             txtacnbt.Name = "txtacnbt";
             txtacnbt.Size = new Size(142, 23);
             txtacnbt.TabIndex = 5;
             // 
             // txtacnw
             // 
-            txtacnw.Location = new Point(127, 140);
+            txtacnw.Location = new Point(129, 167);
             txtacnw.Name = "txtacnw";
             txtacnw.Size = new Size(142, 23);
             txtacnw.TabIndex = 4;
             // 
             // txtacned
             // 
-            txtacned.Location = new Point(127, 111);
+            txtacned.Location = new Point(129, 138);
             txtacned.Name = "txtacned";
             txtacned.Size = new Size(142, 23);
             txtacned.TabIndex = 3;
             // 
             // txtacnbd
             // 
-            txtacnbd.Location = new Point(127, 82);
+            txtacnbd.Location = new Point(129, 109);
             txtacnbd.Name = "txtacnbd";
             txtacnbd.Size = new Size(142, 23);
             txtacnbd.TabIndex = 2;
             // 
             // txtacni
             // 
-            txtacni.Location = new Point(127, 53);
+            txtacni.Location = new Point(129, 80);
             txtacni.Name = "txtacni";
             txtacni.Size = new Size(142, 23);
             txtacni.TabIndex = 1;
             // 
             // txtacnp
             // 
-            txtacnp.Location = new Point(127, 24);
+            txtacnp.Location = new Point(129, 51);
             txtacnp.Name = "txtacnp";
             txtacnp.Size = new Size(142, 23);
             txtacnp.TabIndex = 0;
@@ -1329,35 +1398,24 @@
             mySqlCommand1.EnableCaching = false;
             mySqlCommand1.Transaction = null;
             // 
-            // Note
-            // 
-            Note.Controls.Add(label55);
-            Note.Location = new Point(6, 251);
-            Note.Name = "Note";
-            Note.Size = new Size(465, 89);
-            Note.TabIndex = 3;
-            Note.TabStop = false;
-            Note.Text = "Note";
-            // 
-            // label55
-            // 
-            label55.AutoSize = true;
-            label55.Location = new Point(25, 31);
-            label55.Name = "label55";
-            label55.Size = new Size(416, 30);
-            label55.TabIndex = 0;
-            label55.Text = "To modify the task name or reward details, please edit them in taskitem.dat.\r\nChanges made here will not update the names or rewards shown in the client.\r\n";
-            // 
             // ActivityForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(997, 817);
+            ClientSize = new Size(989, 817);
             Controls.Add(tabControl1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "ActivityForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Activity Editor By DuaSelipar";
             tabControl1.ResumeLayout(false);
             tbcfg.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            Note.ResumeLayout(false);
+            Note.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -1370,8 +1428,6 @@
             tabacn.ResumeLayout(false);
             tabacn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEvents).EndInit();
-            Note.ResumeLayout(false);
-            Note.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1507,5 +1563,9 @@
         private Button btnsv;
         private GroupBox Note;
         private Label label55;
+        private GroupBox groupBox3;
+        private Label label56;
+        private LinkLabel linkLabel1;
+        private LinkLabel linkLabel2;
     }
 }
