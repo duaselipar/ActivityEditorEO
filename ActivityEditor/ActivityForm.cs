@@ -12,14 +12,14 @@ namespace ActivityEditor
         public string AcnFilePath => txtacn.Text;
         public string PeFilePath => txtpe.Text;
         public string MySqlConnString { get; private set; } = string.Empty;
-        public MySqlConnection MySqlConn { get; private set; }
+        public MySqlConnection? MySqlConn { get; private set; } = null;
 
         // Path ke setting.ini (same folder dengan .exe)
         private readonly string iniFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setting.ini");
         private Dictionary<string, string> iniData = new();
 
         // DataGridView untuk event
-        private System.Data.DataTable eventsTable; // <-- LETAK SINI, BAWAH VARIABLE LAIN
+        // private System.Data.DataTable eventsTable; // <-- LETAK SINI, BAWAH VARIABLE LAIN
 
         public ActivityForm()
         {
@@ -102,8 +102,8 @@ playexplain=
 
             txthost.Text = iniData.GetValueOrDefault("hostname", "");
             txtport.Text = iniData.GetValueOrDefault("port", "3306");
-            txtuser.Text = iniData.GetValueOrDefault("user", "");
-            txtpass.Text = Decrypt(iniData.GetValueOrDefault("password", ""));
+            txtuser.Text = iniData.GetValueOrDefault("user", "test");
+            txtpass.Text = Decrypt(iniData.GetValueOrDefault("password", "test123"));
             txtdb.Text = iniData.GetValueOrDefault("database", "");
             txtacn.Text = iniData.GetValueOrDefault("activitycaledarnew", "");
             txtpe.Text = iniData.GetValueOrDefault("playexplain", "");
@@ -188,7 +188,8 @@ playexplain=
                 try
                 {
                     MySqlConn = new MySqlConnection(MySqlConnString);
-                    MySqlConn.Open();
+                    if (MySqlConn != null && MySqlConn.State == System.Data.ConnectionState.Closed)
+                        MySqlConn.Open();
 
                     SaveSettings();
 
@@ -221,7 +222,18 @@ playexplain=
                 // Disconnect
                 try
                 {
-                    MySqlConn?.Close();
+                    if (MySqlConn != null)
+                    {
+                        MySqlConn.Close();
+                    }
+                }
+                catch
+                {
+                    // Handle any exceptions if necessary
+                }
+
+                try
+                {
                     MySqlConn?.Dispose();
                     MySqlConn = null;
                 }
@@ -281,26 +293,22 @@ playexplain=
                 events.Add((currentSection, taskName ?? "", ""));
 
             // 2. Query trigger script dari DB (MySQL)
-            if (MySqlConn != null)
-            {
-                if (MySqlConn.State == System.Data.ConnectionState.Closed)
-                    MySqlConn.Open();
+            if (MySqlConn != null && MySqlConn.State == System.Data.ConnectionState.Closed)
+                MySqlConn.Open();
 
-                for (int i = 0; i < events.Count; i++)
+            for (int i = 0; i < events.Count; i++)
+            {
+                string eventId = events[i].EventID;
+                string triggerScript = "0";
+                using (var cmd = new MySqlCommand($"SELECT beginscript FROM cq_newtaskconfig WHERE id = @id", MySqlConn))
                 {
-                    string eventId = events[i].EventID;
-                    string triggerScript = "0";
-                    using (var cmd = new MySqlCommand($"SELECT beginscript FROM cq_newtaskconfig WHERE id = @id", MySqlConn))
-                    {
-                        cmd.Parameters.AddWithValue("@id", eventId);
-                        var result = cmd.ExecuteScalar();
-                        if (result != null && result != DBNull.Value)
-                            triggerScript = result.ToString();
-                    }
-                    events[i] = (events[i].EventID, events[i].TaskName, triggerScript);
+                    cmd.Parameters.AddWithValue("@id", eventId);
+                    var result = cmd.ExecuteScalar();
+                    triggerScript = result?.ToString() ?? "0";
                 }
-                MySqlConn.Close();
+                events[i] = (events[i].EventID, events[i].TaskName, triggerScript);
             }
+            MySqlConn.Close();
 
             // 3. Masukkan data ke DataGridView
             // 5. Masukkan data ke DataGridView
@@ -352,8 +360,12 @@ playexplain=
             if (dgvEvents.SelectedRows.Count == 0) return;
 
             var row = dgvEvents.SelectedRows[0];
-            string eventId = row.Cells[0].Value?.ToString();
-            if (string.IsNullOrWhiteSpace(eventId)) return;
+            string? eventId = dgvEvents.SelectedRows[0].Cells[0].Value?.ToString();
+            if (string.IsNullOrWhiteSpace(eventId))
+            {
+                MessageBox.Show("EventID is null or empty.");
+                return;
+            }
 
             // Untuk tab playexplain:
             LoadPlayexplainSection(eventId);
@@ -491,13 +503,13 @@ playexplain=
             // 1. Dapatkan EventID
             if (dgvEvents.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Pilih event dulu.");
+                MessageBox.Show("Select event first.");
                 return;
             }
             string eventId = dgvEvents.SelectedRows[0].Cells[0].Value?.ToString();
             if (string.IsNullOrWhiteSpace(eventId))
             {
-                MessageBox.Show("EventID kosong!");
+                MessageBox.Show("EventID Empty!");
                 return;
             }
 
@@ -565,7 +577,7 @@ playexplain=
             // 4. Update DB trigger script
             try
             {
-                if (MySqlConn.State == System.Data.ConnectionState.Closed)
+                if (MySqlConn != null && MySqlConn.State == System.Data.ConnectionState.Closed)
                     MySqlConn.Open();
 
                 // Check dulu ID tu wujud ke tak
@@ -672,7 +684,7 @@ playexplain=
         {
             try
             {
-                if (MySqlConn.State == System.Data.ConnectionState.Closed)
+                if (MySqlConn != null && MySqlConn.State == System.Data.ConnectionState.Closed)
                     MySqlConn.Open();
 
                 using (var cmd = new MySqlCommand("SELECT beginscript FROM cq_newtaskconfig WHERE id = @id", MySqlConn))
