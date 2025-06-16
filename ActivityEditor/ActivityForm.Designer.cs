@@ -38,13 +38,10 @@
             label56 = new Label();
             Note = new GroupBox();
             label55 = new Label();
-            button1 = new Button();
+            btnConnect = new Button();
             groupBox2 = new GroupBox();
-            btnpe = new Button();
-            btnacn = new Button();
-            txtpe = new TextBox();
-            txtacn = new TextBox();
-            label7 = new Label();
+            btnBrowseClient = new Button();
+            txtClientFolder = new TextBox();
             label6 = new Label();
             groupBox1 = new GroupBox();
             label5 = new Label();
@@ -190,7 +187,7 @@
             // 
             tbcfg.Controls.Add(groupBox3);
             tbcfg.Controls.Add(Note);
-            tbcfg.Controls.Add(button1);
+            tbcfg.Controls.Add(btnConnect);
             tbcfg.Controls.Add(groupBox2);
             tbcfg.Controls.Add(groupBox1);
             tbcfg.Location = new Point(4, 24);
@@ -206,7 +203,7 @@
             groupBox3.Controls.Add(linkLabel2);
             groupBox3.Controls.Add(linkLabel1);
             groupBox3.Controls.Add(label56);
-            groupBox3.Location = new Point(6, 413);
+            groupBox3.Location = new Point(6, 376);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(963, 160);
             groupBox3.TabIndex = 4;
@@ -222,7 +219,6 @@
             linkLabel2.TabIndex = 2;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "DuaSelipar";
-            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
             // linkLabel1
             // 
@@ -233,7 +229,6 @@
             linkLabel1.TabIndex = 1;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Source Code";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // label56
             // 
@@ -247,7 +242,7 @@
             // Note
             // 
             Note.Controls.Add(label55);
-            Note.Location = new Point(6, 251);
+            Note.Location = new Point(6, 214);
             Note.Name = "Note";
             Note.Size = new Size(963, 70);
             Note.TabIndex = 3;
@@ -263,82 +258,51 @@
             label55.TabIndex = 0;
             label55.Text = "To modify the task name or reward details, please edit them in taskitem.dat. Changes made here will not update the names or rewards shown in the client.\r\n";
             // 
-            // button1
+            // btnConnect
             // 
-            button1.Location = new Point(6, 327);
-            button1.Name = "button1";
-            button1.Size = new Size(963, 80);
-            button1.TabIndex = 2;
-            button1.Text = "Load And Connect";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnConnect.Location = new Point(6, 290);
+            btnConnect.Name = "btnConnect";
+            btnConnect.Size = new Size(963, 80);
+            btnConnect.TabIndex = 2;
+            btnConnect.Text = "Load And Connect";
+            btnConnect.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(btnpe);
-            groupBox2.Controls.Add(btnacn);
-            groupBox2.Controls.Add(txtpe);
-            groupBox2.Controls.Add(txtacn);
-            groupBox2.Controls.Add(label7);
+            groupBox2.Controls.Add(btnBrowseClient);
+            groupBox2.Controls.Add(txtClientFolder);
             groupBox2.Controls.Add(label6);
             groupBox2.Location = new Point(6, 120);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(963, 125);
+            groupBox2.Size = new Size(963, 88);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "File Config";
             // 
-            // btnpe
+            // btnBrowseClient
             // 
-            btnpe.Location = new Point(797, 69);
-            btnpe.Name = "btnpe";
-            btnpe.Size = new Size(75, 23);
-            btnpe.TabIndex = 5;
-            btnpe.Text = "Select";
-            btnpe.UseVisualStyleBackColor = true;
-            btnpe.Click += btnpe_Click;
+            btnBrowseClient.Location = new Point(797, 35);
+            btnBrowseClient.Name = "btnBrowseClient";
+            btnBrowseClient.Size = new Size(75, 23);
+            btnBrowseClient.TabIndex = 4;
+            btnBrowseClient.Text = "Select";
+            btnBrowseClient.UseVisualStyleBackColor = true;
             // 
-            // btnacn
+            // txtClientFolder
             // 
-            btnacn.Location = new Point(797, 35);
-            btnacn.Name = "btnacn";
-            btnacn.Size = new Size(75, 23);
-            btnacn.TabIndex = 4;
-            btnacn.Text = "Select";
-            btnacn.UseVisualStyleBackColor = true;
-            btnacn.Click += btnacn_Click;
-            // 
-            // txtpe
-            // 
-            txtpe.Location = new Point(198, 70);
-            txtpe.Name = "txtpe";
-            txtpe.Size = new Size(584, 23);
-            txtpe.TabIndex = 3;
-            // 
-            // txtacn
-            // 
-            txtacn.Location = new Point(198, 36);
-            txtacn.Name = "txtacn";
-            txtacn.Size = new Size(584, 23);
-            txtacn.TabIndex = 2;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(77, 73);
-            label7.Name = "label7";
-            label7.Size = new Size(115, 15);
-            label7.TabIndex = 1;
-            label7.Text = "Playexplain.ini Path :";
+            txtClientFolder.Location = new Point(198, 36);
+            txtClientFolder.Name = "txtClientFolder";
+            txtClientFolder.Size = new Size(584, 23);
+            txtClientFolder.TabIndex = 2;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(25, 39);
             label6.Name = "label6";
-            label6.Size = new Size(167, 15);
+            label6.Size = new Size(107, 15);
             label6.TabIndex = 0;
-            label6.Text = "ActivityCalendarNew.ini Path :";
+            label6.Text = "Client Folder Path :";
             // 
             // groupBox1
             // 
@@ -465,7 +429,6 @@
             btnsv.TabIndex = 7;
             btnsv.Text = "Save All Settings";
             btnsv.UseVisualStyleBackColor = true;
-            btnsv.Click += btnsv_Click;
             // 
             // txtts
             // 
@@ -1347,7 +1310,6 @@
             dgvEvents.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEvents.Size = new Size(370, 721);
             dgvEvents.TabIndex = 0;
-            dgvEvents.CellContentClick += dgvEvents_CellContentClick;
             dgvEvents.SelectionChanged += dgvEvents_SelectionChanged;
             // 
             // dataGridViewTextBoxColumn1
@@ -1384,7 +1346,7 @@
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(316, 23);
             txtSearch.TabIndex = 2;
-            txtSearch.TextChanged += txtSearch_TextChanged;
+
             // 
             // contextMenuStrip1
             // 
@@ -1433,139 +1395,136 @@
 
         #endregion
 
-        private TabControl tabControl1;
-        private TabPage tbcfg;
-        private GroupBox groupBox2;
-        private GroupBox groupBox1;
-        private TabPage tbmain;
-        private Button button1;
-        private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label label1;
-        private TextBox txtdb;
-        private TextBox txtpass;
-        private TextBox txtuser;
-        private TextBox txtport;
-        private TextBox txthost;
-        private TextBox txtpe;
-        private TextBox txtacn;
-        private ContextMenuStrip contextMenuStrip1;
-        private Button btnpe;
-        private Button btnacn;
+        public System.Windows.Forms.TabControl tabControl1;
+        public System.Windows.Forms.TabPage tbcfg;
+        public System.Windows.Forms.GroupBox groupBox2;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.TabPage tbmain;
+        public System.Windows.Forms.Button btnConnect;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox txtdb;
+        public System.Windows.Forms.TextBox txtpass;
+        public System.Windows.Forms.TextBox txtuser;
+        public System.Windows.Forms.TextBox txtport;
+        public System.Windows.Forms.TextBox txthost;
+        public System.Windows.Forms.TextBox txtClientFolder;
+        public System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        public System.Windows.Forms.Button btnBrowseClient;
 
-        private DataGridView dgvEvents;
-        private GroupBox groupBoxDetails;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private Label label8;
-        private TextBox txtSearch;
-        private TabControl tab;
-        private TabPage tabpe;
-        private TabPage tabacn;
-        private Label label9;
+        public System.Windows.Forms.DataGridView dgvEvents;
+        public System.Windows.Forms.GroupBox groupBoxDetails;
+        public System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        public System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        public System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox txtSearch;
+        public System.Windows.Forms.TabControl tab;
+        public System.Windows.Forms.TabPage tabpe;
+        public System.Windows.Forms.TabPage tabacn;
+        public System.Windows.Forms.Label label9;
         private MySql.Data.MySqlClient.MySqlCommand mySqlCommand1;
-        private Label label13;
-        private Label label12;
-        private Label label11;
-        private Label label10;
-        private Label label15;
-        private Label label14;
-        private RichTextBox rtxtped1;
-        private TextBox txtpedt1;
-        private TextBox txtper;
-        private TextBox txtpert;
-        private TextBox txtpeactivityname;
-        private TextBox txtpescript;
-        private TextBox txtpeweb;
-        private TextBox txtpestatus;
-        private Label label21;
-        private Label label19;
-        private Label label20;
-        private Label label17;
-        private Label label18;
-        private Label label16;
-        private RichTextBox rtxtped2;
-        private TextBox txtpedt2;
-        private TextBox txtpeuld;
-        private RichTextBox rtxtped3;
-        private TextBox txtpedt3;
-        private TextBox txtacnlt;
-        private TextBox txtacnct;
-        private TextBox txtacnet;
-        private TextBox txtacnbt;
-        private TextBox txtacnw;
-        private TextBox txtacned;
-        private TextBox txtacnbd;
-        private TextBox txtacni;
-        private TextBox txtacnp;
-        private TextBox txtacntal;
-        private TextBox txtacnar;
-        private TextBox txtacnt;
-        private TextBox txtacnmn;
-        private TextBox txtacnmb;
-        private TextBox txtacnb;
-        private TextBox txtacnmi;
-        private TextBox txtacnm;
-        private TextBox txtacnai;
-        private TextBox txtacnat;
-        private TextBox txtacnpi;
-        private Label label25;
-        private Label label24;
-        private Label label23;
-        private Label label22;
-        private TextBox txtacnfp;
-        private TextBox txtacnvb;
-        private TextBox txtacntstrht;
-        private TextBox txtacntstr;
-        private Label label40;
-        private Label label39;
-        private Label label38;
-        private Label label37;
-        private Label label36;
-        private Label label35;
-        private Label label34;
-        private Label label33;
-        private Label label32;
-        private Label label31;
-        private Label label30;
-        private Label label29;
-        private Label label28;
-        private Label label27;
-        private Label label26;
-        private Label label44;
-        private Label label43;
-        private Label label42;
-        private Label label41;
-        private Label label45;
-        private Label label49;
-        private Label label48;
-        private Label label47;
-        private Label label46;
-        private TextBox txtacntd;
-        private TextBox txtacnits;
-        private TextBox txtacnbb;
-        private TextBox txtacnci;
-        private TextBox txtacntt;
-        private TextBox txtacnmet;
-        private Label label53;
-        private Label label52;
-        private Label label51;
-        private TextBox txtacnd;
-        private TextBox txtacnhn;
-        private Label label50;
-        private TextBox txtts;
-        private Label label54;
-        private Button btnsv;
-        private GroupBox Note;
-        private Label label55;
-        private GroupBox groupBox3;
-        private Label label56;
-        private LinkLabel linkLabel1;
-        private LinkLabel linkLabel2;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.Label label12;
+        public System.Windows.Forms.Label label11;
+        public System.Windows.Forms.Label label10;
+        public System.Windows.Forms.Label label15;
+        public System.Windows.Forms.Label label14;
+        public System.Windows.Forms.RichTextBox rtxtped1;
+        public System.Windows.Forms.TextBox txtpedt1;
+        public System.Windows.Forms.TextBox txtper;
+        public System.Windows.Forms.TextBox txtpert;
+        public System.Windows.Forms.TextBox txtpeactivityname;
+        public System.Windows.Forms.TextBox txtpescript;
+        public System.Windows.Forms.TextBox txtpeweb;
+        public System.Windows.Forms.TextBox txtpestatus;
+        public System.Windows.Forms.Label label21;
+        public System.Windows.Forms.Label label19;
+        public System.Windows.Forms.Label label20;
+        public System.Windows.Forms.Label label17;
+        public System.Windows.Forms.Label label18;
+        public System.Windows.Forms.Label label16;
+        public System.Windows.Forms.RichTextBox rtxtped2;
+        public System.Windows.Forms.TextBox txtpedt2;
+        public System.Windows.Forms.TextBox txtpeuld;
+        public System.Windows.Forms.RichTextBox rtxtped3;
+        public System.Windows.Forms.TextBox txtpedt3;
+        public System.Windows.Forms.TextBox txtacnlt;
+        public System.Windows.Forms.TextBox txtacnct;
+        public System.Windows.Forms.TextBox txtacnet;
+        public System.Windows.Forms.TextBox txtacnbt;
+        public System.Windows.Forms.TextBox txtacnw;
+        public System.Windows.Forms.TextBox txtacned;
+        public System.Windows.Forms.TextBox txtacnbd;
+        public System.Windows.Forms.TextBox txtacni;
+        public System.Windows.Forms.TextBox txtacnp;
+        public System.Windows.Forms.TextBox txtacntal;
+        public System.Windows.Forms.TextBox txtacnar;
+        public System.Windows.Forms.TextBox txtacnt;
+        public System.Windows.Forms.TextBox txtacnmn;
+        public System.Windows.Forms.TextBox txtacnmb;
+        public System.Windows.Forms.TextBox txtacnb;
+        public System.Windows.Forms.TextBox txtacnmi;
+        public System.Windows.Forms.TextBox txtacnm;
+        public System.Windows.Forms.TextBox txtacnai;
+        public System.Windows.Forms.TextBox txtacnat;
+        public System.Windows.Forms.TextBox txtacnpi;
+        public System.Windows.Forms.Label label25;
+        public System.Windows.Forms.Label label24;
+        public System.Windows.Forms.Label label23;
+        public System.Windows.Forms.Label label22;
+        public System.Windows.Forms.TextBox txtacnfp;
+        public System.Windows.Forms.TextBox txtacnvb;
+        public System.Windows.Forms.TextBox txtacntstrht;
+        public System.Windows.Forms.TextBox txtacntstr;
+        public System.Windows.Forms.Label label40;
+        public System.Windows.Forms.Label label39;
+        public System.Windows.Forms.Label label38;
+        public System.Windows.Forms.Label label37;
+        public System.Windows.Forms.Label label36;
+        public System.Windows.Forms.Label label35;
+        public System.Windows.Forms.Label label34;
+        public System.Windows.Forms.Label label33;
+        public System.Windows.Forms.Label label32;
+        public System.Windows.Forms.Label label31;
+        public System.Windows.Forms.Label label30;
+        public System.Windows.Forms.Label label29;
+        public System.Windows.Forms.Label label28;
+        public System.Windows.Forms.Label label27;
+        public System.Windows.Forms.Label label26;
+        public System.Windows.Forms.Label label44;
+        public System.Windows.Forms.Label label43;
+        public System.Windows.Forms.Label label42;
+        public System.Windows.Forms.Label label41;
+        public System.Windows.Forms.Label label45;
+        public System.Windows.Forms.Label label49;
+        public System.Windows.Forms.Label label48;
+        public System.Windows.Forms.Label label47;
+        public System.Windows.Forms.Label label46;
+        public System.Windows.Forms.TextBox txtacntd;
+        public System.Windows.Forms.TextBox txtacnits;
+        public System.Windows.Forms.TextBox txtacnbb;
+        public System.Windows.Forms.TextBox txtacnci;
+        public System.Windows.Forms.TextBox txtacntt;
+        public System.Windows.Forms.TextBox txtacnmet;
+        public System.Windows.Forms.Label label53;
+        public System.Windows.Forms.Label label52;
+        public System.Windows.Forms.Label label51;
+        public System.Windows.Forms.TextBox txtacnd;
+        public System.Windows.Forms.TextBox txtacnhn;
+        public System.Windows.Forms.Label label50;
+        public System.Windows.Forms.TextBox txtts;
+        public System.Windows.Forms.Label label54;
+        public System.Windows.Forms.Button btnsv;
+        public System.Windows.Forms.GroupBox Note;
+        public System.Windows.Forms.Label label55;
+        public System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.Label label56;
+        public System.Windows.Forms.LinkLabel linkLabel1;
+        public System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
