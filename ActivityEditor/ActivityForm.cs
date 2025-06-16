@@ -63,6 +63,11 @@ namespace ActivityEditor
         {
             try
             {
+                // If file doesn't exist, create default then continue as usual
+                if (!File.Exists(iniFile))
+                {
+                    CreateDefaultSettings(iniFile);
+                }
                 settings.Load();
                 txthost.Text = settings.IniData.GetValueOrDefault("hostname", "");
                 txtport.Text = settings.IniData.GetValueOrDefault("port", "3306");
@@ -80,6 +85,22 @@ namespace ActivityEditor
                 MessageBox.Show("Error loading settings: " + ex.Message);
             }
         }
+        private static void CreateDefaultSettings(string iniPath)
+        {
+            var defaultData = new Dictionary<string, string>
+    {
+        { "hostname", "localhost" },
+        { "port", "3306" },
+        { "user", "root" },
+        { "password", "test" },
+        { "database", "yourdatabase" },
+        { "client_folder", @"C:\your client" }
+    };
+            var mgr = new SettingsManager(iniPath);
+            mgr.Save(defaultData);
+        }
+
+
 
         // === Settings Saver (called from handler, must be public) ===
         public void SaveSettings()
