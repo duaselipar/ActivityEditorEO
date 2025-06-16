@@ -47,9 +47,7 @@ namespace ActivityEditor.Handlers
                     foreach (var evt in form.AllEvents)
                         form.dgvEvents.Rows.Add(evt.EventID, evt.TaskName, evt.TriggerScript);
 
-                    // ... (lepas berjaya connect & load events)
-                    form.SaveSettings(); // Satu baris je
-
+                    form.SaveSettings();
 
                     form.txthost.Enabled = form.txtport.Enabled = form.txtuser.Enabled = form.txtpass.Enabled = form.txtdb.Enabled = false;
                     form.txtClientFolder.Enabled = form.btnBrowseClient.Enabled = false;
@@ -57,8 +55,13 @@ namespace ActivityEditor.Handlers
                     form.btnConnect.Text = "Disconnect";
                     form.IsConnected = true;
 
+                    // === Tukar tab selepas connect ===
+                    form.tabControl1.SelectedTab = form.tbmain;
+                    // (atau guna index: form.tabControl1.SelectedIndex = 1;)
+
                     MessageBox.Show("MySQL Connected! Events loaded.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
                 catch (Exception ex)
                 {
                     MessageBox.Show("MySQL Error: " + ex.Message, "MySQL Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
